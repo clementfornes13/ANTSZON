@@ -1,33 +1,14 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tkinter import StringVar, OptionMenu
 from PIL import ImageTk, Image
 import os
-from tkinter import PhotoImage
-from tkinter import font
 from tkinter import messagebox
 import osmnx as ox
-import networkx as nx
-import multiprocessing as mp
-import random
-import matplotlib.pyplot as plt
-import uuid
-import json
 import os
-import time
-import ipywidgets as widgets
-from IPython.display import display
-from sklearn.cluster import KMeans
-from functools import lru_cache
-from concurrent.futures import ThreadPoolExecutor
 
 ox.settings.log_console=True
 ox.settings.use_cache=True
-
-
 
 root = tk.Tk()
 root.geometry("1600x950")
@@ -41,7 +22,7 @@ image_path = os.path.join(current_directory, "Images", "Ants.png")
 image_path1 = os.path.join(current_directory, "Images", "AntsColony.png")
 image_path2 = os.path.join(current_directory, "Images", "MessageBox.png")
 
-#Liste ID_Trajets 
+#Liste ID_Trajets
 Id_trajets = ["Option 1", "Option 2", "Option 3"]
 
 # Insertion de l'image
@@ -58,10 +39,6 @@ image2 = image2.resize((250, 250))  # Redimensionnez l'image selon vos besoins
 image_tk2 = ImageTk.PhotoImage(image2)
 
 
-
-
-
-
 # Home Page
 def home_page():
     home_frame = tk.Frame(main_frame)
@@ -75,7 +52,7 @@ def home_page():
     Graph2.pack(fill=tk.BOTH, padx=20, pady=20)
 
     # Graphs
-    Graphs_path = os.path.join(current_directory, "Images","Data")
+    # Graphs_path = os.path.join(current_directory, "Images","Data")
 
     home_frame.pack(fill=tk.BOTH, expand=True)
 
@@ -95,15 +72,13 @@ def Graphs_page():
     Cartetitle = tk.Label(Graphs_frame, text="Graph :", font=('Roman', 15))
     Cartetitle.place(x=100, y=200)
 
-    
-
     def generate_graph(selected_trajet):
         Trajet_path = os.path.join(current_directory, "Images", "Data", selected_trajet)
         
         image_label = tk.Label(Graphs_frame, image=image_tk, bg="darkgray")
         image_label.place(x=750, y=550)
-    
         return(Trajet_path)
+
     # Le reste du code pour générer le graphique en utilisant Trajet_path
 
     Graphs_frame.pack(fill=tk.BOTH, expand=True)
@@ -117,7 +92,7 @@ def Journey_page():
     lb =tk.Label(Journey_frame, text="Journey Page", font=('Bold',15))
     lb.pack()
 
-    
+
 
     Journey_frame.pack(fill=tk.BOTH, expand=True)
 
@@ -142,8 +117,8 @@ def About_page():
     objective_label = tk.Label(About_frame, text="Notre objectif principal :", font=("Roman", 18),foreground="red", bg="darkgray")
     objective_label.pack()
 
-    objective_description = tk.Label(About_frame,text="""Notre objectif principal est de fournir des produits et services de haute qualité qui répondent aux besoins
-    de nos clients. Nous nous engageons à être à l'avant-garde de la technologie et à créer des solutions sur mesure
+    objective_description = tk.Label(About_frame,text="""Notre objectif principal est de fournir des produits et services de haute qualité 
+    qui répondent aux besoins de nos clients. Nous nous engageons à être à l'avant-garde de la technologie et à créer des solutions sur mesure
     qui ajoutent de la valeur à nos clients et à leurs utilisateurs."""
                                     , height = 5 , width=100, font=("Roman", 18), bg="darkgray")
     objective_description.pack(pady=10)
@@ -192,7 +167,6 @@ def Settings_page():
             "GAMMA": gamma_entry.get(),
             "REGION": region_var.get()
         }
-        
 
         with open(".\Projet\settings.txt", "w", encoding="utf-8") as file:
             for key, value in new_settings.items():
@@ -209,9 +183,6 @@ def Settings_page():
                     entry_fields[key].insert(tk.END, value)
 
 
-    
-
-
     # Create a button to save the settings
     save_button = tk.Button(Settings_frame, text="Save", command=save_settings, width=20, height=2, font=(300))
     save_button.place(x=400, y=800)
@@ -221,13 +192,9 @@ def Settings_page():
     load_button.place(x=700, y=800)
 
 
-
-
-
-
     # Create entry fields for each setting
     entry_fields = {}
-    
+
     petit_poids_label = tk.Label(Settings_frame, text="Poids Colis :", font=("Roman", 20) ,foreground="red")
     petit_poids_label.place(x=120, y=100)
 
@@ -372,11 +339,25 @@ def Settings_page():
     gamma_label.place(x=960, y=640)
     gamma_entry = tk.Entry(Settings_frame, font=(18), width=15)
     gamma_entry.place(x=960, y=680)
-    entry_fields["GAMMA"] = gamma_entry 
+    entry_fields["GAMMA"] = gamma_entry
 
 
     # Create a list of departments for the REGION label
-    departments = ['Ain', 'Aisne', 'Allier', 'Alpes-de-Haute-Provence', 'Hautes-Alpes', 'Alpes-Maritimes', 'Ardèche', 'Ardennes','Ariège', 'Aube', 'Aude', 'Aveyron', 'Bouches-du-Rhône', 'Calvados', 'Cantal', 'Charente', 'Charente-Maritime','Cher', 'Corrèze', 'Corse-du-Sud', 'Haute-Corse', "Côte-d'Or", "Côtes-d'Armor", 'Creuse', 'Dordogne','Doubs', 'Drôme', 'Eure', 'Eure-et-Loir', 'Finistère', 'Gard', 'Haute-Garonne', 'Gers', 'Gironde', 'Hérault','Ille-et-Vilaine', 'Indre', 'Indre-et-Loire', 'Isère', 'Jura', 'Landes', 'Loir-et-Cher', 'Loire', 'Haute-Loire','Loire-Atlantique', 'Loiret', 'Lot', 'Lot-et-Garonne', 'Lozère', 'Maine-et-Loire', 'Manche', 'Marne', 'Haute-Marne','Mayenne', 'Meurthe-et-Moselle', 'Meuse', 'Morbihan', 'Moselle', 'Nièvre', 'Nord', 'Oise', 'Orne', 'Pas-de-Calais','Puy-de-Dôme', 'Pyrénées-Atlantiques', 'Hautes-Pyrénées', 'Pyrénées-Orientales', 'Bas-Rhin', 'Haut-Rhin','Rhône', 'Haute-Saône', 'Saône-et-Loire', 'Sarthe', 'Savoie', 'Haute-Savoie', 'Paris', 'Seine-Maritime','Seine-et-Marne', 'Yvelines', 'Deux-Sèvres', 'Somme', 'Tarn', 'Tarn-et-Garonne', 'Var', 'Vaucluse', 'Vendée','Vienne', 'Haute-Vienne', 'Vosges', 'Yonne', 'Territoire de Belfort', 'Essonne', 'Hauts-de-Seine','Seine-Saint-Denis', 'Val-de-Marne', "Val-d'Oise"]
+    departments = ['Ain', 'Aisne', 'Allier', 'Alpes-de-Haute-Provence', 'Hautes-Alpes', 'Alpes-Maritimes',
+                   'Ardèche', 'Ardennes','Ariège', 'Aube', 'Aude', 'Aveyron', 'Bouches-du-Rhône', 'Calvados',
+                   'Cantal', 'Charente', 'Charente-Maritime','Cher', 'Corrèze', 'Corse-du-Sud', 'Haute-Corse',
+                   "Côte-d'Or", "Côtes-d'Armor", 'Creuse', 'Dordogne','Doubs', 'Drôme', 'Eure', 'Eure-et-Loir',
+                   'Finistère', 'Gard', 'Haute-Garonne', 'Gers', 'Gironde', 'Hérault','Ille-et-Vilaine', 'Indre',
+                   'Indre-et-Loire', 'Isère', 'Jura', 'Landes', 'Loir-et-Cher', 'Loire', 'Haute-Loire',
+                   'Loire-Atlantique', 'Loiret', 'Lot', 'Lot-et-Garonne', 'Lozère', 'Maine-et-Loire',
+                   'Manche', 'Marne', 'Haute-Marne','Mayenne', 'Meurthe-et-Moselle', 'Meuse', 'Morbihan',
+                   'Moselle', 'Nièvre', 'Nord', 'Oise', 'Orne', 'Pas-de-Calais','Puy-de-Dôme',
+                   'Pyrénées-Atlantiques', 'Hautes-Pyrénées', 'Pyrénées-Orientales', 'Bas-Rhin',
+                   'Haut-Rhin','Rhône', 'Haute-Saône', 'Saône-et-Loire', 'Sarthe', 'Savoie',
+                   'Haute-Savoie', 'Paris', 'Seine-Maritime','Seine-et-Marne', 'Yvelines', 'Deux-Sèvres',
+                   'Somme', 'Tarn', 'Tarn-et-Garonne', 'Var', 'Vaucluse', 'Vendée','Vienne', 'Haute-Vienne',
+                   'Vosges', 'Yonne', 'Territoire de Belfort', 'Essonne', 'Hauts-de-Seine',
+                   'Seine-Saint-Denis', 'Val-de-Marne', "Val-d'Oise"]
 
     # Create a StringVar to store the selected department
     region_var = StringVar(Settings_frame)
@@ -483,7 +464,3 @@ main_frame.configure(width =1600, height=950)
 
 show_home = home_page()
 root.mainloop()
-
-
-
-
