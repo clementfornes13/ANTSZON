@@ -5,7 +5,6 @@ from PIL import ImageTk, Image
 import os
 from tkinter import messagebox
 import osmnx as ox
-import os
 
 ox.settings.log_console=True
 ox.settings.use_cache=True
@@ -74,10 +73,10 @@ def Graphs_page():
 
     def generate_graph(selected_trajet):
         Trajet_path = os.path.join(current_directory, "Images", "Data", selected_trajet)
-        
+
         image_label = tk.Label(Graphs_frame, image=image_tk, bg="darkgray")
         image_label.place(x=750, y=550)
-        return(Trajet_path)
+        return (Trajet_path)
 
     # Le reste du code pour générer le graphique en utilisant Trajet_path
 
@@ -117,13 +116,13 @@ def About_page():
     objective_label = tk.Label(About_frame, text="Notre objectif principal :", font=("Roman", 18),foreground="red", bg="darkgray")
     objective_label.pack()
 
-    objective_description = tk.Label(About_frame,text="""Notre objectif principal est de fournir des produits et services de haute qualité 
+    objective_description = tk.Label(About_frame,text="""Notre objectif principal est de fournir des produits et services de haute qualité
     qui répondent aux besoins de nos clients. Nous nous engageons à être à l'avant-garde de la technologie et à créer des solutions sur mesure
     qui ajoutent de la valeur à nos clients et à leurs utilisateurs."""
                                     , height = 5 , width=100, font=("Roman", 18), bg="darkgray")
     objective_description.pack(pady=10)
 
-    
+
     image_label = tk.Label(About_frame, image=image_tk, bg="darkgray")
     image_label.place(x=750, y=550)
 
