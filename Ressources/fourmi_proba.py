@@ -14,8 +14,8 @@ if __name__ == "__main__":
     def fourmi_proba_process(i,resultat_queue,Graph,Pheromone,PositionFourmis,SeenFourmis,alpha=1,beta=1) :
         # On filtre le cas ou la fourmi doit rejoindre son noeud d'origine
         Last = True
-        for bool in SeenFourmis[i] :
-            if bool is False :
+        for value in SeenFourmis[i] :
+            if value is False :
                 Last = False
         if Last :
             # On renvoie le signal qu'une fourmi doit revenir à son point de départ
