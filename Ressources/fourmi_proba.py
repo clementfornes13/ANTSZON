@@ -28,7 +28,7 @@ if __name__ == "__main__":
         for j in range(len(Graph)) :
             # j est le noeud de destination
             # On veux pas que la fourmis reste sur place ni qu'elle aille sur un noeud qu'elle a déjà vu
-            if j != PositionFourmis[i] and SeenFourmis[i][j] == False:
+            if j is not PositionFourmis[i] and SeenFourmis[i][j] is False:
                 Result_temp.append([PositionFourmis[i],j,(Pheromone[PositionFourmis[i]][j])**(beta)/(distance_euclidienne(CoordsFourmis,Graph[j]))**(alpha)])
                 Distances_temp.append((Pheromone[PositionFourmis[i]][j])**(beta)/(distance_euclidienne(CoordsFourmis,Graph[j]))**(alpha))
             else :
