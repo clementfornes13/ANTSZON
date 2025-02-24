@@ -42,6 +42,7 @@ image_tk2 = ImageTk.PhotoImage(image2)
 def home_page():
     home_frame = tk.Frame(main_frame)
 
+
     # Ajouter du contenu au cadre
     btn = tk.Button(home_frame, text="Generer", font=(15), fg="White", bd=0, bg="green", width=50, height=3)
     btn.pack(pady=20, padx=20)
@@ -76,9 +77,12 @@ def Graphs_page():
         image_label = tk.Label(Graphs_frame, image=image_tk, bg="darkgray")
         image_label.place(x=750, y=550)
         return (Trajet_path)
+
     # Le reste du code pour générer le graphique en utilisant Trajet_path
 
     Graphs_frame.pack(fill=tk.BOTH, expand=True)
+
+
 
 #Journey Page
 def Journey_page():
@@ -86,6 +90,9 @@ def Journey_page():
 
     lb =tk.Label(Journey_frame, text="Journey Page", font=('Bold',15))
     lb.pack()
+
+
+
     Journey_frame.pack(fill=tk.BOTH, expand=True)
 
 #About Us Page
@@ -114,6 +121,7 @@ def About_page():
     qui ajoutent de la valeur à nos clients et à leurs utilisateurs."""
                                     , height = 5 , width=100, font=("Roman", 18), bg="darkgray")
     objective_description.pack(pady=10)
+
 
     image_label = tk.Label(About_frame, image=image_tk, bg="darkgray")
     image_label.place(x=750, y=550)
