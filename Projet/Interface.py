@@ -129,7 +129,7 @@ def About_page():
     image_label1 = tk.Label(About_frame, image=image_tk2, bg="darkgray")
     image_label1.place(x=560, y=(500))
 
-        
+
     About_frame.pack(fill=tk.BOTH, expand=True)
 
 #Settings Page
@@ -167,13 +167,13 @@ def Settings_page():
             "REGION": region_var.get()
         }
 
-        with open(".\Projet\settings.txt", "w", encoding="utf-8") as file:
+        with open(".\\Projet\\settings.txt", "w", encoding="utf-8") as file:
             for key, value in new_settings.items():
                 file.write(f"{key} = {value}\n")
         messagebox.showinfo("Sauvegarde", "Sauvegarde réussie !")
 
     def load_settings():
-        with open(".\Projet\settings.txt", "r") as file:
+        with open(".\\Projet\\settings.txt", "r") as file:
             settings = file.readlines()
             for setting in settings:
                 key, value = setting.strip().split(" = ")
@@ -452,8 +452,6 @@ options_frame.pack(side=tk.LEFT, fill=tk.Y)
 options_frame.pack_propagate(False)
 options_frame.configure(width =150, height=550)
 
-
-
 main_frame = tk.Frame(root, highlightbackground='black', highlightthickness=2)
 
 main_frame.pack(side=tk.LEFT)
@@ -461,5 +459,5 @@ main_frame.pack_propagate(False)
 main_frame.configure(width =1600, height=950)
 
 
-show_home = home_page()
+home_page()
 root.mainloop()
